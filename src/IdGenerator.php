@@ -101,7 +101,7 @@ class IdGenerator
         $prefix = $configArr['prefix'];
         $resetOnPrefixChange =  array_key_exists('reset_on_prefix_change', $configArr)
                                 ? $configArr['reset_on_prefix_change']
-                                : false;
+                                : true;
         $length = $configArr['length'];
 
         $fieldInfo = (new self)->getFieldType($table, $field);

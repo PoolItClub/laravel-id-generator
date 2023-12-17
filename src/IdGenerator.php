@@ -95,7 +95,8 @@ class IdGenerator
                 throw new Exception('where clause must need at least an array');
             }
         }
-
+        $connection = config('database.default');
+        $driver = DB::connection($connection)->getDriverName();
         $table = $configArr['table'];
         $field = array_key_exists('field', $configArr) ? $configArr['field'] : 'id';
         $prefix = $configArr['prefix'];

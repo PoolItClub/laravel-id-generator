@@ -136,6 +136,9 @@ class IdGenerator
             if ($resetOnPrefixChange) {
                 $maxIdSql = "SELECT MAX(%s) AS maxid FROM %s WHERE %s LIKE %s";
                 $maxQuery = sprintf($maxIdSql, $field, $table, $field, "'" . $prefix . "%'");
+                if ($driver == 'pgsql') {
+                     $maxQuery = sprintf($maxIdSql, $field, $table, $field.'::TEXT', "'" . $prefix . "%'");
+                }
             } else {
                 $maxQuery = sprintf("SELECT MAX(%s) AS maxid FROM %s", $field, $table);
             }
